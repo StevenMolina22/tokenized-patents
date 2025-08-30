@@ -1,9 +1,52 @@
-# 🏗 Scaffold-ETH 2
+## Tinder for Inventors & Investors
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+We’re building the **first private, tokenized IP marketplace**—a Tinder for inventors and investors.
+
+**The Problem:** Inventors can’t safely share their ideas, and investors can’t discover opportunities without exposure. Early-stage innovation stalls because trust is missing.
+
+**The Solution:** Inventors upload **encrypted abstracts**, investors share **interest profiles**, and matches happen **privately on-chain** using privacy-preserving computation. A **patent NFT** anchors provenance, while **royalty-backed tokens** give investors a share of future licensing and commercialization revenues—so inventors keep ownership, but unlock funding.
+
+**Why It Matters:**
+
+* **Trustless discovery** without leaking IP.
+* **On-chain provenance** of ideas.
+* **New funding rails**: revenue-linked tokens make R\&D liquid and investable.
+
+We’re enabling a global, liquid marketplace where science and invention can finally meet capital—without sacrificing confidentiality or control.
+
+---
+
+## Flow
+
+1. **PatentNFT.sol** → Mints an NFT with IPFS metadata (represents timestamped patent proof).
+2. **RoyaltyToken.sol** → ERC20 token representing revenue-sharing rights (investors hold these).
+
+These are stripped down for hackathon speed, not production-ready.
+
+## 📄 PatentNFT.sol
+
+**Usage in demo:**
+
+* When inventor + investor match → call `mint()` with `to = inventor address` and `tokenURI = IPFS link to encrypted abstract`.
+* This gives a permanent, timestamped on-chain NFT.
+
+### 📄 RoyaltyToken.sol
+
+**Usage in demo:**
+
+* After match + NFT mint, call `mint(investor, X)` to simulate investor funding.
+* Use `distribute()` later to show how royalties flow back (e.g., push tokens to investor wallet in demo).
+
+### ⏱️ Why This Works for Hackathon
+
+* Both contracts rely on **OpenZeppelin** → safe, fast, minimal code.
+* You get **NFT provenance** (Patent proof) + **ERC20 royalty rights** (investor upside).
+* You don’t need complex on-chain math; just show the flow:
+  *Inventor uploads → Match → NFT minted → Investor receives RoyaltyTokens → Fake payout triggered.*
+
+---
+
+## Scaffold-Eth
 
 🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
 
@@ -17,15 +60,7 @@
 
 ![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
 
-## Requirements
-
-Before you begin, you need to install the following tools:
-
-- [Node (>= v20.18.3)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
-
-## Quickstart
+### Quickstart
 
 To get started with Scaffold-ETH 2, follow the steps below:
 
@@ -66,15 +101,6 @@ Run smart contract test with `yarn hardhat:test`
 - Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
 - Edit your deployment scripts in `packages/hardhat/deploy`
 
-
-## Documentation
-
 Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
 
 To know more about its features, check out our [website](https://scaffoldeth.io).
-
-## Contributing to Scaffold-ETH 2
-
-We welcome contributions to Scaffold-ETH 2!
-
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
