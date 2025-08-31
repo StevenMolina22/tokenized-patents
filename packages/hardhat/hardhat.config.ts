@@ -61,6 +61,14 @@ const config: HardhatUserConfig = {
       url: `https://eth-sepolia.g.alchemy.com/v2/${providerApiKey}`,
       accounts: [deployerPrivateKey],
     },
+    liskSepolia: {
+      url: "https://rpc.sepolia-api.lisk.com",
+      accounts: [process.env.PRIVATE_KEY!],
+    },
+    liskMainnet: {
+      url: "https://rpc.api.lisk.com",
+      accounts: [process.env.PRIVATE_KEY!],
+    },
     arbitrum: {
       url: `https://arb-mainnet.g.alchemy.com/v2/${providerApiKey}`,
       accounts: [deployerPrivateKey],

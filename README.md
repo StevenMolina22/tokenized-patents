@@ -18,8 +18,8 @@ We’re enabling a global, liquid marketplace where science and invention can fi
 
 ## Flow
 
-1. **PatentNFT.sol** → Mints an NFT with IPFS metadata (represents timestamped patent proof).
-2. **RoyaltyToken.sol** → ERC20 token representing revenue-sharing rights (investors hold these).
+1. **Inventor submits proposal** → `PatentNFT.sol` mints NFT with IPFS metadata + `RoyaltyToken.sol` mints all tokens to admin
+2. **Investor chooses inventor** → Investor purchases tokens from admin via token transfer/sale
 
 These are stripped down for hackathon speed, not production-ready.
 
@@ -27,22 +27,23 @@ These are stripped down for hackathon speed, not production-ready.
 
 **Usage in demo:**
 
-* When inventor + investor match → call `mint()` with `to = inventor address` and `tokenURI = IPFS link to encrypted abstract`.
-* This gives a permanent, timestamped on-chain NFT.
+* When inventor submits proposal → call `mintPatent()` with `to = inventor address` and `tokenURI = IPFS link to encrypted abstract`.
+* This gives a permanent, timestamped on-chain NFT representing the patent proposal.
 
 ### 📄 RoyaltyToken.sol
 
 **Usage in demo:**
 
-* After match + NFT mint, call `mint(investor, X)` to simulate investor funding.
-* Use `distribute()` later to show how royalties flow back (e.g., push tokens to investor wallet in demo).
+* When inventor submits proposal → call `mintShares(admin, totalSupply)` to mint all royalty tokens to admin.
+* When investor chooses inventor → investor buys tokens from admin (simulating funding the patent).
+* Use `depositRoyalties()` later to show how royalties flow back to token holders.
 
 ### ⏱️ Why This Works for Hackathon
 
 * Both contracts rely on **OpenZeppelin** → safe, fast, minimal code.
 * You get **NFT provenance** (Patent proof) + **ERC20 royalty rights** (investor upside).
-* You don’t need complex on-chain math; just show the flow:
-  *Inventor uploads → Match → NFT minted → Investor receives RoyaltyTokens → Fake payout triggered.*
+* You don't need complex on-chain math; just show the flow:
+  *Inventor submits proposal → NFT + tokens minted → Investor chooses & buys tokens → Royalty payouts distributed.*
 
 ---
 
