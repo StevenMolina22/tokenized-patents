@@ -14,6 +14,11 @@ contract PatentMarketplace is Ownable {
     uint256 public constant TOKEN_PRICE = 0.01 ether;
     mapping(uint256 => bool) public fundingActive;
 
+    // --- ADDED: NDA Tracking ---
+    // Tracks which investor address has acknowledged the NDA for a specific patent token ID.
+    mapping(uint256 => mapping(address => bool)) public hasSignedNDA;
+    // --- END ADDED ---
+
     event PatentRegistered(
         uint256 indexed tokenId,
         address indexed inventor,
@@ -21,10 +26,31 @@ contract PatentMarketplace is Ownable {
         string tokenURI
     );
 
+    // --- ADDED: NDA Event ---
+    event NDASigned(uint256 indexed tokenId, address indexed investor);
+
+    // --- END ADDED ---
+
     // CHANGED: Removed `_adminAddress` from constructor
     constructor(address _patentNFTAddress, address initialOwner) Ownable(initialOwner) {
         patentNFT = PatentNFT(_patentNFTAddress);
     }
+
+    // --- ADDED: NDA Signing Function ---
+    /**
+     * @notice Allows a potential investor to sign an on-chain NDA for a specific patent.
+     * @dev This is a simplified acknowledgment for PoC purposes.
+     * @param _tokenId The ID of the patent NFT to which the NDA applies.
+     */
+    function signNDA(uint256 _tokenId) public {
+        require(patentToRoyaltyContract[_tokenId] != address(0), "Patent does not exist");
+        require(!hasSignedNDA[_tokenId][msg.sender], "NDA already signed by this address");
+
+        hasSignedNDA[_tokenId][msg.sender] = true;
+        emit NDASigned(_tokenId, msg.sender);
+    }
+
+    // --- END ADDED ---
 
     function registerPatent(
         string memory tokenURI,
@@ -56,6 +82,10 @@ contract PatentMarketplace is Ownable {
      * @param _tokenAmount The amount of royalty tokens to purchase.
      */
     function buyTokens(uint256 _tokenId, uint256 _tokenAmount) public payable {
+        // --- MODIFIED: Added NDA check ---
+        require(hasSignedNDA[_tokenId][msg.sender], "Investor must sign NDA first");
+        // --- END MODIFIED ---
+
         require(fundingActive[_tokenId], "Funding for this patent is not active");
 
         address royaltyTokenContract = patentToRoyaltyContract[_tokenId];
