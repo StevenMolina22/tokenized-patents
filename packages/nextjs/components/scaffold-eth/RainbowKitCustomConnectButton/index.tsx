@@ -9,38 +9,40 @@ import { RevealBurnerPKModal } from "./RevealBurnerPKModal";
 import { WrongNetworkDropdown } from "./WrongNetworkDropdown";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Address } from "viem";
-import { useNetworkColor } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { getBlockExplorerAddressLink } from "~~/utils/scaffold-eth";
 
 /**
  * Custom Wagmi Connect Button (watch balance + custom design)
  */
-export const RainbowKitCustomConnectButton = () => {
-  const networkColor = useNetworkColor();
-  const { targetNetwork } = useTargetNetwork();
+
+const ConnectionRedirect = ({ connected, mounted }: { connected: boolean; mounted: boolean }) => {
   const router = useRouter();
+  useEffect(() => {
+    if (connected) {
+      router.push("/app/discover");
+    } else if (mounted) {
+      // Redirect to main page when wallet disconnects
+      router.push("/app");
+    }
+  }, [connected, mounted, router]);
+  return null;
+};
+
+export const RainbowKitCustomConnectButton = () => {
+  const { targetNetwork } = useTargetNetwork();
 
   return (
     <ConnectButton.Custom>
       {({ account, chain, openConnectModal, mounted }) => {
-        const connected = mounted && account && chain;
+        const connected = Boolean(mounted && account && chain);
         const blockExplorerAddressLink = account
           ? getBlockExplorerAddressLink(targetNetwork, account.address)
           : undefined;
 
-        // Redirect to discover page when wallet connects
-        useEffect(() => {
-          if (connected) {
-            router.push('/app/discover');
-          } else if (mounted) {
-            // Redirect to main page when wallet disconnects
-            router.push('/app');
-          }
-        }, [connected, mounted, router]);
-
         return (
           <>
+            <ConnectionRedirect connected={connected} mounted={Boolean(mounted)} />
             {(() => {
               if (!connected) {
                 return (
