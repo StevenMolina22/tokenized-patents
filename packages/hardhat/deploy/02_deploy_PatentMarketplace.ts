@@ -13,7 +13,7 @@ const deployPatentMarketplace: DeployFunction = async function (hre: HardhatRunt
   // 2. Deploy the PatentMarketplace contract
   await deploy("PatentMarketplace", {
     from: deployer,
-    args: [patentNFTAddress, deployer, deployer],
+    args: [patentNFTAddress, deployer],
     log: true,
     autoMine: true,
   });
