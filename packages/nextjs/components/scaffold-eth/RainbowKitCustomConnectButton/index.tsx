@@ -15,6 +15,8 @@ import { getBlockExplorerAddressLink } from "~~/utils/scaffold-eth";
 
 // @ts-nocheck
 
+// @ts-nocheck
+
 /**
  * Custom Wagmi Connect Button (watch balance + custom design)
  */
@@ -23,10 +25,10 @@ const ConnectionRedirect = ({ connected, mounted }: { connected: boolean; mounte
   const router = useRouter();
   useEffect(() => {
     if (connected) {
-      router.push("/app/discover");
+      router.push("/discover");
     } else if (mounted) {
       // Redirect to main page when wallet disconnects
-      router.push("/app");
+      router.push("/");
     }
   }, [connected, mounted, router]);
   return null;
