@@ -1,8 +1,15 @@
 import "@rainbow-me/rainbowkit/styles.css";
+import { Poppins } from "next/font/google";
 import { ScaffoldEthAppWithProviders } from "~~/components/ScaffoldEthAppWithProviders";
 import { ThemeProvider } from "~~/components/ThemeProvider";
 import "~~/styles/globals.css";
 import { getMetadata } from "~~/utils/scaffold-eth/getMetadata";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-poppins",
+});
 
 export const metadata = getMetadata({
   title: "Scaffold-ETH 2 App",
@@ -11,7 +18,7 @@ export const metadata = getMetadata({
 
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html suppressHydrationWarning className={``}>
+    <html suppressHydrationWarning className={`${poppins.variable}`}>
       <body>
         <ThemeProvider enableSystem>
           <ScaffoldEthAppWithProviders>{children}</ScaffoldEthAppWithProviders>

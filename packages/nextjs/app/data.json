@@ -1,0 +1,32 @@
+{
+    "patents": [
+        {
+            "title": "AI Drug Discovery Platform",
+            "seeking": "$850k",
+            "stage": "Seed",
+            "valuation": "$12M",
+            "runway": "18mo",
+            "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "description": "AI system that identifies promising drug compounds 10x faster than traditional methods. Already discovered 3 compounds now in clinical trials, with 2 showing breakthrough therapy designation potential.",
+            "Inventor": {
+                "name": "Dr. Adriana Martinez",
+                "bio": "Harvard Medical | Former Pfizer\n15 peer-reviewed papers",
+                "imageUrl": "https://picsum.photos/200/300"
+            }
+        },
+        {
+            "title": "Quantum Computing Security Protocol",
+            "seeking": "$1.2M",
+            "stage": "Series A",
+            "valuation": "$18M",
+            "runway": "24mo",
+            "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "description": "Post-quantum cryptography solution that protects data against quantum attacks. Already deployed in 2 Fortune 500 companies with 99.99% uptime and zero security breaches.",
+            "Inventor": {
+                "name": "Dr. Michael Chen",
+                "bio": "MIT CSAIL | Former Google\n20+ patents filed",
+                "imageUrl": "https://picsum.photos/200/300"
+            }
+        }
+    ]
+}

@@ -1299,6 +1299,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@iconify/react@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "@iconify/react@npm:6.0.0"
+  dependencies:
+    "@iconify/types": ^2.0.0
+  peerDependencies:
+    react: ">=16"
+  checksum: 65b42b4641d8b24b5d30d19b1c6e16f8dd7a1a3c9591bfb356e454fcf4bc4f9a81028ebc25716fe03d1dc19332cb84bb961bf3d7454674657672207dc1945d47
+  languageName: node
+  linkType: hard
+
+"@iconify/types@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@iconify/types@npm:2.0.0"
+  checksum: 029f58542c160e9d4a746869cf2e475b603424d3adf3994c5cc8d0406c47e6e04a3b898b2707840c1c5b9bd5563a1660a34b110d89fce43923baca5222f4e597
+  languageName: node
+  linkType: hard
+
 "@img/sharp-darwin-arm64@npm:0.33.5":
   version: 0.33.5
   resolution: "@img/sharp-darwin-arm64@npm:0.33.5"
@@ -6515,9 +6533,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001579, caniuse-lite@npm:^1.0.30001702, caniuse-lite@npm:^1.0.30001737":
-  version: 1.0.30001737
-  resolution: "caniuse-lite@npm:1.0.30001737"
-  checksum: 347ad0dccd76d04d86163fdd59ec89894660cced949252ff05c65aea4a35ffeba5814a60733c0b44ee1b56c083ae9aba4ab715b783ab72b69d8a653ef3ab6c9e
+  version: 1.0.30001739
+  resolution: "caniuse-lite@npm:1.0.30001739"
+  checksum: 285554bcf66d5baf6c1b76f2864100aa1fca2d8795ed7ca76033dc472c100ec56a8556601cbdb632c3287a7b338f571a18e5bab5ee1500c5852abd80081972a0
   languageName: node
   linkType: hard
 
@@ -9721,8 +9739,8 @@ __metadata:
   linkType: hard
 
 "got@npm:^14.4.5":
-  version: 14.4.7
-  resolution: "got@npm:14.4.7"
+  version: 14.4.8
+  resolution: "got@npm:14.4.8"
   dependencies:
     "@sindresorhus/is": ^7.0.1
     "@szmarczak/http-timer": ^5.0.1
@@ -9735,7 +9753,7 @@ __metadata:
     p-cancelable: ^4.0.1
     responselike: ^3.0.0
     type-fest: ^4.26.1
-  checksum: 776a4431ba331cacbfdcc91762ffb5970cf3a444f786c22009209395f3508c67dc30ea9dd60d7ec1fcf4a8d378b206de55e81c862f3c8916fc3b464fb1046a1a
+  checksum: 46710d9bd3ad4b331c80d43d1bf98edf9ad8e3fed781ea6658762e66a19d664db5d91a4b50287601e46bcfaec502757e624a8ab2fa9697c0ece506b5e34209f1
   languageName: node
   linkType: hard
 
@@ -14799,6 +14817,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "se-2@workspace:."
   dependencies:
+    "@iconify/react": ^6.0.0
     husky: ~9.1.6
     lint-staged: ~13.2.2
   languageName: unknown

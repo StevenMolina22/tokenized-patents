@@ -1,7 +1,8 @@
 "use client";
 
 // @refresh reset
-import { Balance } from "../Balance";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { AddressInfoDropdown } from "./AddressInfoDropdown";
 import { AddressQRCodeModal } from "./AddressQRCodeModal";
 import { RevealBurnerPKModal } from "./RevealBurnerPKModal";
@@ -18,6 +19,7 @@ import { getBlockExplorerAddressLink } from "~~/utils/scaffold-eth";
 export const RainbowKitCustomConnectButton = () => {
   const networkColor = useNetworkColor();
   const { targetNetwork } = useTargetNetwork();
+  const router = useRouter();
 
   return (
     <ConnectButton.Custom>
@@ -26,6 +28,16 @@ export const RainbowKitCustomConnectButton = () => {
         const blockExplorerAddressLink = account
           ? getBlockExplorerAddressLink(targetNetwork, account.address)
           : undefined;
+
+        // Redirect to discover page when wallet connects
+        useEffect(() => {
+          if (connected) {
+            router.push('/app/discover');
+          } else if (mounted) {
+            // Redirect to main page when wallet disconnects
+            router.push('/app');
+          }
+        }, [connected, mounted, router]);
 
         return (
           <>
@@ -44,12 +56,6 @@ export const RainbowKitCustomConnectButton = () => {
 
               return (
                 <>
-                  <div className="flex flex-col items-center mr-1">
-                    <Balance address={account.address as Address} className="min-h-0 h-auto" />
-                    <span className="text-xs" style={{ color: networkColor }}>
-                      {chain.name}
-                    </span>
-                  </div>
                   <AddressInfoDropdown
                     address={account.address as Address}
                     displayName={account.displayName}
